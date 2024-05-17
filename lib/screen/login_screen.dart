@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:trailtrekker_app/screen/signup_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -65,7 +66,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _signUp() {
-    print('Sign Up');
+    Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>SignUpScreen()),);
+    
     // Handle sign up logic here
   }
 

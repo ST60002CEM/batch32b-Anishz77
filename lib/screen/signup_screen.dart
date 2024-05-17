@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trailtrekker_app/screen/login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
@@ -22,12 +23,19 @@ class SignUpScreen extends StatelessWidget {
               SizedBox(height: 16.0),
               SignUpForm(),
               SizedBox(height: 16.0),
-              Text(
-                'Already a member? Log in',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>LoginPage()),);
+                },
+                child: Text(
+                  'Already a member? Log in',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ],
@@ -118,7 +126,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 final email = _emailController.text;
                 final password = _passwordController.text;
                 final phoneNumber = _phoneNumberController.text;
-                print('Sign Up: Name: $name, Email: $email, Password: $password, Phone Number: $phoneNumber');
+                Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>LoginPage()),);
               }
             },
             style: ElevatedButton.styleFrom(
