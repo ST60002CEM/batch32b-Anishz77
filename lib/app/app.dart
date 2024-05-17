@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trailtrekker_app/screen/signup_screen.dart';
+import 'package:trailtrekker_app/screen/splash_screen.dart';
 
 import '../screen/login_screen.dart';
 
@@ -10,7 +11,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SignUpScreen(),
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
     );
   }
 }
