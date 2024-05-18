@@ -9,7 +9,7 @@ class SignUpScreen extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            'assets/image/login.webp',
+            'assets/image/bg.jpg',
             fit: BoxFit.cover,
           ),
           Center(
@@ -25,7 +25,7 @@ class SignUpScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black, // Set text color to white for better visibility
+                      color: Colors.white, // Set text color to white for better visibility
                     ),
                   ),
                   SizedBox(height: 16.0),
@@ -43,7 +43,7 @@ class SignUpScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.black, // Set text color to white for better visibility
+                        color: Colors.white, // Set text color to white for better visibility
                       ),
                     ),
                   ),
