@@ -22,7 +22,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isTablet = MediaQuery.of(context).size.shortestSide >= 600;
+
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Dashboard'),
@@ -50,17 +53,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    width: 200.0,
-                    height: 110.0,
+                    width: isTablet ? 200.0 : 150.0, // Adjusted container width
+                    height: isTablet ? 200.0 : 150.0, // Adjusted container height
                     color: Colors.grey,
-                    child: Image.asset('assets/image/cart.jpg'), // Replace 'assets/images/image1.png' with your image asset path
+                    child: Image.asset(
+                      'assets/image/cart.jpg',
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   SizedBox(height: 10.0),
                   ElevatedButton(
                     onPressed: () {
                       // Handle button tap
                     },
-                    child: const Text('Find Destinations'),
+                    child: Text(
+                      'Go Shopping',
+                      style: TextStyle(fontSize: isTablet ? 20.0 : 16.0), // Adjust button text size
+                    ),
                   ),
                 ],
               ),
@@ -69,17 +80,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    width: 190.0,
-                    height: 120.0,
+                    width: isTablet ? 200.0 : 150.0, // Adjusted container width
+                    height: isTablet ? 200.0 : 150.0, // Adjusted container height
                     color: Colors.grey,
-                    child: Image.asset('assets/image/destination.jpg'), // Replace 'assets/images/image2.png' with your image asset path
+                    child: Image.asset(
+                      'assets/image/destination.jpg',
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   SizedBox(height: 10.0),
                   ElevatedButton(
                     onPressed: () {
                       // Handle button tap
                     },
-                    child: const Text('Go Shopping'),
+                    child: Text(
+                      'Find Destinations',
+                      style: TextStyle(fontSize: isTablet ? 20.0 : 16.0), // Adjust button text size
+                    ),
                   ),
                 ],
               ),
@@ -97,13 +116,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
             });
           },
           type: BottomNavigationBarType.fixed,
-          iconSize: 40.0, // Adjust the size as needed
+          iconSize: isTablet ? 50.0 : 40.0, // Adjust the size as needed
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.search),
               label: 'About',
             ),

@@ -4,6 +4,9 @@ import 'package:trailtrekker_app/screen/login_screen.dart';
 class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final bool isTablet = size.width >= 600;
+
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -15,39 +18,46 @@ class SignUpScreen extends StatelessWidget {
           Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    'Sign Up',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white, // Set text color to white for better visibility
-                    ),
-                  ),
-                  SizedBox(height: 16.0),
-                  SignUpForm(),
-                  SizedBox(height: 16.0),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      );
-                    },
-                    child: Text(
-                      'Already a member? Log in',
+              child: Container(
+                padding: EdgeInsets.all(isTablet ? 32.0 : 16.0),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      'Sign Up',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white, // Set text color to white for better visibility
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 16.0),
+                    SignUpForm(),
+                    SizedBox(height: 16.0),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                      child: Text(
+                        'Already a member? Log in',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -71,6 +81,9 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final bool isTablet = size.width >= 600;
+
     return Form(
       key: _formKey,
       child: Column(
@@ -80,10 +93,16 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: _nameController,
             decoration: InputDecoration(
               labelText: 'Name',
-              labelStyle: TextStyle(color: Colors.black), // Set label text color to white
+              labelStyle: TextStyle(color: Colors.white),
               filled: true,
-              fillColor: Colors.white.withOpacity(0.8), // Set background color with some transparency
+              fillColor: Colors.white.withOpacity(0.1),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide.none,
+              ),
+              prefixIcon: Icon(Icons.person, color: Colors.white),
             ),
+            style: TextStyle(color: Colors.white),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter your name';
@@ -96,10 +115,16 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: _emailController,
             decoration: InputDecoration(
               labelText: 'Email',
-              labelStyle: TextStyle(color: Colors.black),
+              labelStyle: TextStyle(color: Colors.white),
               filled: true,
-              fillColor: Colors.white.withOpacity(0.8),
+              fillColor: Colors.white.withOpacity(0.1),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide.none,
+              ),
+              prefixIcon: Icon(Icons.email, color: Colors.white),
             ),
+            style: TextStyle(color: Colors.white),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter your email';
@@ -115,10 +140,16 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: _passwordController,
             decoration: InputDecoration(
               labelText: 'Password',
-              labelStyle: TextStyle(color: Colors.black),
+              labelStyle: TextStyle(color: Colors.white),
               filled: true,
-              fillColor: Colors.white.withOpacity(0.8),
+              fillColor: Colors.white.withOpacity(0.1),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide.none,
+              ),
+              prefixIcon: Icon(Icons.lock, color: Colors.white),
             ),
+            style: TextStyle(color: Colors.white),
             obscureText: true,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -135,10 +166,16 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: _phoneNumberController,
             decoration: InputDecoration(
               labelText: 'Phone Number',
-              labelStyle: TextStyle(color: Colors.black),
+              labelStyle: TextStyle(color: Colors.white),
               filled: true,
-              fillColor: Colors.white.withOpacity(0.8),
+              fillColor: Colors.white.withOpacity(0.1),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide.none,
+              ),
+              prefixIcon: Icon(Icons.phone, color: Colors.white),
             ),
+            style: TextStyle(color: Colors.white),
             keyboardType: TextInputType.phone,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -168,10 +205,17 @@ class _SignUpFormState extends State<SignUpForm> {
               }
             },
             style: ElevatedButton.styleFrom(
-              primary: Colors.black,
+              primary: Colors.blueAccent,
               onPrimary: Colors.white,
+              padding: EdgeInsets.symmetric(vertical: 14.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
             ),
-            child: Text('Sign Up'),
+            child: Text(
+              'Sign Up',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),

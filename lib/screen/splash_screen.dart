@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:trailtrekker_app/screen/login_screen.dart';
 import 'package:trailtrekker_app/screen/signup_screen.dart';
 
@@ -25,47 +26,75 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+
   @override
   void initState() {
     super.initState();
-    Timer(
-      Duration(seconds: 2), // Change the duration as needed
-      () {
+    SystemChrome.setEnabledSystemUIOverlays([]);
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeIn,
+    ));
+    _animationController.forward();
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => LoginPage(),
           ),
         );
-      },
-    );
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    bool isTablet = MediaQuery.of(context).size.shortestSide >= 600;
+
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset(
-              'assets/image/trekking.webp', // Update with your logo asset path
-              width: 100.0, // Adjust the width of the logo
-              height: 100.0, // Adjust the height of the logo
+            FadeTransition(
+              opacity: _animation,
+              child: Image.asset(
+                'assets/image/trekking.webp',
+                width: isTablet ? 200.0 : 100.0, // Adjusted size for tablet
+                height: isTablet ? 200.0 : 100.0, // Adjusted size for tablet
+              ),
             ),
             SizedBox(height: 20.0),
             Text(
               'Trail Trekker',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: isTablet ? 32 : 24, // Adjusted size for tablet
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.blue, // Change text color if needed
+                fontFamily: 'Montserrat', // Custom font
               ),
             ),
-            CircularProgressIndicator(), // Add a loading indicator
+            SizedBox(height: 20.0),
+            CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue), // Customize the color
+            ),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }
