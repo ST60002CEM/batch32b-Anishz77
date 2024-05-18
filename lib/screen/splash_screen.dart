@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:trailtrekker_app/screen/login_screen.dart';
 import 'package:trailtrekker_app/screen/signup_screen.dart';
 
 void main() {
@@ -33,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
       () {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => SignUpScreen(),
+            builder: (context) => LoginPage(),
           ),
         );
       },

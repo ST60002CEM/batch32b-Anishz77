@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trailtrekker_app/screen/signup_screen.dart';
 
+import 'dashboard_screen.dart';
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -27,33 +29,13 @@ class _LoginPageState extends State<LoginPage> {
           _isLoading = false;
         });
         print('Email: $email, Password: $password');
+        // Navigate to dashboard screen
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => DashboardScreen()),
+        );
       });
     }
-  }
-
-  void _loginWithGoogle() {
-    print('Login with Google');
-  }
-
-  void _loginWithTwitter() {
-    print('Login with Twitter');
-  }
-
-  void _loginWithApple() {
-    print('Login with Apple ID');
-  }
-
-  void _forgotPassword() {
-    print('Forgot Password?');
-    // Handle forgot password logic here
-  }
-
-  void _signUp() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SignUpScreen()),
-    );
-    // Handle sign up logic here
   }
 
   @override
@@ -204,6 +186,31 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+  void _forgotPassword() {
+    print('Forgot Password?');
+    // Handle forgot password logic here
+  }
+
+  void _signUp() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SignUpScreen()),
+    );
+    // Handle sign up logic here
+  }
+
+  void _loginWithGoogle() {
+    print('Login with Google');
+  }
+
+  void _loginWithTwitter() {
+    print('Login with Twitter');
+  }
+
+  void _loginWithApple() {
+    print('Login with Apple ID');
   }
 
   @override
