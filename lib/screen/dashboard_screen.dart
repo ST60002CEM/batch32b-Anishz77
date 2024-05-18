@@ -38,18 +38,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                alignment: Alignment.topRight,
-                margin: const EdgeInsets.only(right: 270.0, top: 20.0),
-                child: const Text(
-                  'Category',
-                  style: TextStyle(
-                    fontSize: 27.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+              const Text(
+                'Category',
+                style: TextStyle(
+                  fontSize: 27.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 100.0),
+              SizedBox(height: 20.0),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -59,7 +55,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     color: Colors.grey,
                     child: Image.asset('assets/image/cart.jpg'), // Replace 'assets/images/image1.png' with your image asset path
                   ),
-                  SizedBox(height: 20.0),
+                  SizedBox(height: 10.0),
                   ElevatedButton(
                     onPressed: () {
                       // Handle button tap
@@ -68,7 +64,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 50.0),
+              SizedBox(height: 20.0),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -78,7 +74,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     color: Colors.grey,
                     child: Image.asset('assets/image/destination.jpg'), // Replace 'assets/images/image2.png' with your image asset path
                   ),
-                  SizedBox(height: 30.0),
+                  SizedBox(height: 10.0),
                   ElevatedButton(
                     onPressed: () {
                       // Handle button tap
@@ -117,7 +113,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
-              label: 'profile',
+              label: 'Profile',
             ),
           ],
         ),
