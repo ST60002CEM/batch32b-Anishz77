@@ -3,14 +3,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hotel_booking/features/auth/presentation/view/register_view.dart';
-import 'dashboard_screen.dart';
+import 'package:hotel_booking/features/dashboard/presentation/view/dashboard_view.dart';
 
-class LoginPage extends StatefulWidget {
+
+class LoginView extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginViewState createState() => _LoginViewState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -285,7 +286,7 @@ class _LoginPageState extends State<LoginPage> {
   void _signUp() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SignUpScreen()),
+      MaterialPageRoute(builder: (context) => RegisterView()),
     );
     // Handle sign up logic here
   }

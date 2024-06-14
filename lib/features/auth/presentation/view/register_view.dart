@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_booking/features/auth/presentation/view/login_view.dart';
 
-class SignUpScreen extends StatelessWidget {
+class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -44,7 +44,7 @@ class SignUpScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(builder: (context) => LoginView()),
                         );
                       },
                       child: Text(
@@ -200,7 +200,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 // Navigate to the login screen after successful sign-up
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => LoginView()),
                 );
               }
             },

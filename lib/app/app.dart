@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trailtrekker_app/screen/signup_screen.dart';
-import 'package:trailtrekker_app/screen/splash_screen.dart';
-
-import '../screen/login_screen.dart';
-
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:hotel_booking/features/splash/presentation/view/splash_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
