@@ -1,7 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hotel_booking/features/auth/presentation/view/login_view.dart';
+import 'package:student_management_starter/features/auth/presentation/view/login_view.dart';
 
 void main() {
   runApp(MyApp());

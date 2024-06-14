@@ -2,8 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hotel_booking/features/auth/presentation/view/register_view.dart';
-import 'package:hotel_booking/features/dashboard/presentation/view/dashboard_view.dart';
+import 'package:student_management_starter/features/auth/presentation/view/register_view.dart';
+import 'package:student_management_starter/features/dashboard/presentation/view/dashboard_view.dart';
+
 
 
 class LoginView extends StatefulWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_booking/app/navigator_key/navigator_key.dart';
+import 'package:student_management_starter/app/navigator_key/navigator_key.dart';
+
 
 
 

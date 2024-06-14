@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_booking/screen/about_screen.dart';
-import 'package:hotel_booking/screen/cart_screen.dart';
-import 'package:hotel_booking/screen/home_screen.dart';
-import 'package:hotel_booking/screen/profile_screen.dart';
+import 'package:student_management_starter/features/about/presentation/view/about_view.dart';
+import 'package:student_management_starter/features/cart/presentation/view/cart_view.dart';
+import 'package:student_management_starter/screen/home_screen.dart';
+import 'package:student_management_starter/screen/profile_screen.dart';
+
 
 
 class DashboardScreen extends StatefulWidget {
