@@ -1,16 +1,23 @@
+import 'package:trailtrekker_app/app/navigator_key/navigator_key.dart';
+import 'package:trailtrekker_app/app/themes/app_theme.dart';
+import 'package:trailtrekker_app/features/auth/presentation/view/register_view.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:student_management_starter/features/splash/presentation/view/splash_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trailtrekker_app/features/splash/presentation/view/splash_view.dart';
 
 
-class App extends StatelessWidget {
+
+class App extends ConsumerWidget {
   const App({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
+      navigatorKey: AppNavigator.navigatorKey,
       debugShowCheckedModeBanner: false,
+      title: 'Application',
+      theme: AppTheme.getApplicationTheme(false),
       home: SplashScreen(),
     );
   }

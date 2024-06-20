@@ -1,14 +1,13 @@
+import 'package:riverpod/riverpod.dart';
+import 'package:trailtrekker_app/features/auth/presentation/navigator/login_navigator.dart';
+import 'package:trailtrekker_app/features/auth/presentation/view/register_view.dart';
 
+import '../../../../app/navigator/navigator.dart';
 
-
-import 'package:student_management_starter/app/navigator/navigator.dart';
-import 'package:student_management_starter/features/auth/presentation/view/register_view.dart';
-
-class RegisterViewNavigator{}
-
-// called by other views to open this Register Page
+final registerViewNavigatorProvider=Provider((ref)=>RegisterNavigator());
+class RegisterNavigator with LoginViewRoute{}
 mixin RegisterViewRoute{
   openRegisterView(){
-    NavigateRoute.pushRoute(RegisterView());
+   NavigateRoute.pushRoute( RegisterView());
   }
 }

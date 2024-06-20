@@ -1,148 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:student_management_starter/features/about/presentation/view/about_view.dart';
-import 'package:student_management_starter/features/cart/presentation/view/cart_view.dart';
-import 'package:student_management_starter/screen/home_screen.dart';
-import 'package:student_management_starter/screen/profile_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-
-class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+class DashboardView extends ConsumerStatefulWidget {
+  const DashboardView({Key? key}) : super(key: key);
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  ConsumerState<DashboardView> createState() => _DashboardViewState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _DashboardViewState extends ConsumerState<DashboardView> {
   int _selectedIndex = 0;
-  List<Widget> lstBottomScreen = [
-    const HomeScreen(),
-    const CartScreen(),
-    const ProfileScreen(),
-    const AboutScreen(),
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    Text('Profile Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    Text('Settings Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
   ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    bool isTablet = MediaQuery.of(context).size.shortestSide >= 600;
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Dashboard'),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              // Navigate back to the login page
-              Navigator.of(context).pop();
-            },
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Dashboard'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'Category',
-                style: TextStyle(
-                  fontSize: 27.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 20.0),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: isTablet ? 200.0 : 150.0, // Adjusted container width
-                    height: isTablet ? 200.0 : 150.0, // Adjusted container height
-                    color: Colors.grey,
-                    child: Image.asset(
-                      'assets/image/cart.jpg',
-                      width: double.infinity,
-                      height: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Handle button tap
-                    },
-                    child: Text(
-                      'Go Shopping',
-                      style: TextStyle(fontSize: isTablet ? 20.0 : 16.0), // Adjust button text size
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20.0),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: isTablet ? 200.0 : 150.0, // Adjusted container width
-                    height: isTablet ? 200.0 : 150.0, // Adjusted container height
-                    color: Colors.grey,
-                    child: Image.asset(
-                      'assets/image/destination.jpg',
-                      width: double.infinity,
-                      height: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Handle button tap
-                    },
-                    child: Text(
-                      'Find Destinations',
-                      style: TextStyle(fontSize: isTablet ? 20.0 : 16.0), // Adjust button text size
-                    ),
-                  ),
-                ],
-              ),
-            ],
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.grey[600],
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.black,
-          currentIndex: _selectedIndex,
-          onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          type: BottomNavigationBarType.fixed,
-          iconSize: isTablet ? 50.0 : 40.0, // Adjust the size as needed
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'About',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag),
-              label: 'Cart',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-          ],
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
     );
   }
-}
-
-void main() {
-  runApp(const DashboardScreen());
 }

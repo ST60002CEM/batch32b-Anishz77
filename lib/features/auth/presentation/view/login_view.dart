@@ -1,18 +1,17 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:student_management_starter/features/auth/presentation/view/register_view.dart';
-import 'package:student_management_starter/features/dashboard/presentation/view/dashboard_view.dart';
+import 'package:trailtrekker_app/features/auth/presentation/viewmodel/auth_view_model.dart';
 
+class LoginStateful extends ConsumerStatefulWidget {
+  const LoginStateful({Key? key}) : super(key: key);
 
-
-class LoginView extends StatefulWidget {
   @override
-  _LoginViewState createState() => _LoginViewState();
+  _LoginStatefulState createState() => _LoginStatefulState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginStatefulState extends ConsumerState<LoginStateful> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -26,19 +25,36 @@ class _LoginViewState extends State<LoginView> {
       });
       final email = _emailController.text;
       final password = _passwordController.text;
-      // Simulate a network request
-      Future.delayed(Duration(seconds: 2), () {
-        setState(() {
-          _isLoading = false;
-        });
-        print('Email: $email, Password: $password');
-        // Navigate to dashboard screen
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => DashboardScreen()),
-        );
-      });
+      ref.read(authViewModelProvider.notifier).loginUser(email, password);
+      
     }
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscurePassword = !_obscurePassword;
+    });
+  }
+
+  void _forgotPassword() {
+    print('Forgot Password?');
+    // Handle forgot password logic here
+  }
+
+  void _loginWithGoogle() {
+    print('Login with Google');
+  }
+
+  void _loginWithTwitter() {
+    print('Login with Twitter');
+  }
+
+  void _loginWithApple() {
+    print('Login with Apple ID');
+  }
+
+  void _signUp() {
+  ref.read(authViewModelProvider.notifier).openRegisterView();
   }
 
   @override
@@ -170,11 +186,7 @@ class _LoginViewState extends State<LoginView> {
                     _obscurePassword ? Icons.visibility : Icons.visibility_off,
                     color: Colors.black,
                   ),
-                  onPressed: () {
-                    setState(() {
-                      _obscurePassword = !_obscurePassword;
-                    });
-                  },
+                  onPressed: _togglePasswordVisibility,
                 ),
                 labelStyle: TextStyle(color: Colors.black),
               ),
@@ -277,37 +289,5 @@ class _LoginViewState extends State<LoginView> {
         ],
       ),
     );
-  }
-
-  void _forgotPassword() {
-    print('Forgot Password?');
-    // Handle forgot password logic here
-  }
-
-  void _signUp() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => RegisterView()),
-    );
-    // Handle sign up logic here
-  }
-
-  void _loginWithGoogle() {
-    print('Login with Google');
-  }
-
-  void _loginWithTwitter() {
-    print('Login with Twitter');
-  }
-
-  void _loginWithApple() {
-    print('Login with Apple ID');
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
   }
 }

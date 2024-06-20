@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:student_management_starter/features/auth/presentation/view/login_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trailtrekker_app/features/auth/domain/entity/user_entity.dart';
+import 'package:trailtrekker_app/features/auth/presentation/viewmodel/auth_view_model.dart';
 
-class RegisterView extends StatelessWidget {
+
+class RegisterView extends ConsumerStatefulWidget {
+  @override
+  _RegisterViewState createState() => _RegisterViewState();
+}
+
+class _RegisterViewState extends ConsumerState<RegisterView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -42,10 +50,7 @@ class RegisterView extends StatelessWidget {
                     SizedBox(height: 16.0),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginView()),
-                        );
+                       ref.read(authViewModelProvider.notifier).openLoginView();
                       },
                       child: Text(
                         'Already a member? Log in',
@@ -67,12 +72,12 @@ class RegisterView extends StatelessWidget {
   }
 }
 
-class SignUpForm extends StatefulWidget {
+class SignUpForm extends ConsumerStatefulWidget {
   @override
   _SignUpFormState createState() => _SignUpFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
+class _SignUpFormState extends ConsumerState<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -198,10 +203,18 @@ class _SignUpFormState extends State<SignUpForm> {
                 final phoneNumber = _phoneNumberController.text;
 
                 // Navigate to the login screen after successful sign-up
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginView()),
+                // Navigator.pushReplacement(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => LoginView()),
+
+                final user = UserEntity(
+                  name: name,
+                  email: email,
+                  password: password,
+                  phoneNumber: phoneNumber,
                 );
+                // );
+                ref.read(authViewModelProvider.notifier).registerUser(user);
               }
             },
             style: ElevatedButton.styleFrom(

@@ -1,17 +1,16 @@
-
-
+import 'package:trailtrekker_app/app/navigator/navigator.dart';
+import 'package:trailtrekker_app/app/navigator_key/navigator_key.dart';
+import 'package:trailtrekker_app/features/auth/presentation/navigator/register_navigator.dart';
+import 'package:trailtrekker_app/features/auth/presentation/view/login_view.dart';
+import 'package:trailtrekker_app/features/auth/presentation/view/register_view.dart';
+import 'package:trailtrekker_app/features/dashboard/presentation/navigator/dashboard_navigator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:student_management_starter/app/navigator/navigator.dart';
-import 'package:student_management_starter/features/auth/presentation/navigator/register_navigator.dart';
-import 'package:student_management_starter/features/auth/presentation/view/login_view.dart';
+final loginViewNavigatorProvider=Provider((ref)=>LoginViewNavigator());
+class LoginViewNavigator with RegisterViewRoute,DashboardViewRoute{}
 
-
-final loginViewNavigatorProvider = Provider((ref) => LoginViewNavigator());
-
-class LoginViewNavigator with RegisterViewRoute {}
-
-mixin LoginViewRoute {
-  openLoginView() {
-    NavigateRoute.pushRoute(LoginView());
+mixin LoginViewRoute{
+  openLoginView(){
+  NavigateRoute.pushRoute(const LoginStateful());
   }
+
 }

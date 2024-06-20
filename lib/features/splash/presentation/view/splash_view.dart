@@ -1,30 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:student_management_starter/features/auth/presentation/view/login_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trailtrekker_app/features/auth/presentation/viewmodel/auth_view_model.dart';
+import 'package:trailtrekker_app/features/splash/presentation/viewmodel/splash_view_model.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Splash Screen Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SplashScreen(),
-    );
-  }
-}
-
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
 
@@ -43,11 +28,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     _animationController.forward();
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => LoginView(),
-          ),
-        );
+      Future.delayed(Duration(seconds: 4),(){
+       ref.read(splashViewModelProvider.notifier).openLoginView();
+      });
       }
     });
   }
@@ -90,9 +73,4 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     );
   }
 
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
 }
