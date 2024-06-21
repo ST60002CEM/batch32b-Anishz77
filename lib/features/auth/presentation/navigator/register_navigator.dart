@@ -8,6 +8,6 @@ final registerViewNavigatorProvider=Provider((ref)=>RegisterNavigator());
 class RegisterNavigator with LoginViewRoute{}
 mixin RegisterViewRoute{
   openRegisterView(){
-   NavigateRoute.pushRoute( RegisterView());
+   NavigateRoute.pushRoute( SignUpForm());
   }
 }

@@ -14,16 +14,15 @@ class UserHiveModel{
   final String userId;
 
   @HiveField(1)
-  final String name;
+  final String username;
 
   @HiveField(2)
   final String email;
 
   @HiveField(3)
   final String password;
-
   @HiveField(4)
-  final String phoneNumber;
+  final String ? profilePicture;
 
 
 
@@ -32,26 +31,27 @@ class UserHiveModel{
 
   UserHiveModel({
     String ? userId,
-    required this.name,
+    required this.username,
     required this.email,
     required this.password,
-    required this.phoneNumber,
+     this.profilePicture,
 }):userId=userId ?? const Uuid().v4();
 
   UserHiveModel.empty():this(
     userId: '',
-    name: '',
+    username: '',
     email: '',
     password: '',
-    phoneNumber: ''
+    profilePicture: '',
+    
   );
 
 
   //convert hive object to Entity
- UserEntity toEntity()=>UserEntity(userId:userId,name: name, email:email , password:  password, phoneNumber: phoneNumber);
+ UserEntity toEntity()=>UserEntity(userId:userId,username: username, email:email , password:  password);
 
  //convert Entity to Hive Database
-UserHiveModel toUserModel(UserEntity entity)=>UserHiveModel(userId: const Uuid().v4(),name: entity.name, email: entity.email, password: entity.password, phoneNumber: entity.phoneNumber);
+UserHiveModel toUserModel(UserEntity entity)=>UserHiveModel(userId: const Uuid().v4(),username: entity.username, email: entity.email, password: entity.password,profilePicture: entity.profilePicture);
 //convert Entity List to Hive List
 List<UserHiveModel> toUserModelList(List<UserEntity> entities)=>
     entities.map((entity)=>toUserModel(entity)).toList();
