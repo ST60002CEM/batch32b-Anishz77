@@ -29,3 +29,9 @@ class PaginatedProductsViewModel extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+final paginatedProductsViewModelProvider = ChangeNotifierProvider((ref) {
+  final repository = ProductRepositoryImpl();
+  final fetchProductsUseCase = FetchProductsUseCase(repository);
+  return PaginatedProductsViewModel(fetchProductsUseCase);
+});
