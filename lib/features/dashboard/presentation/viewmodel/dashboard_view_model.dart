@@ -14,3 +14,16 @@ class DashboardViewModel extends ChangeNotifier {
     {'name': 'Wiry', 'price': '\Rs2700', 'image': 'assets/image/wiry.webp'},
     {'name': 'Rodless', 'price': '\Rs1900', 'image': 'assets/image/rodless.webp'},
   ];
+
+  void fetchFeaturedProducts() {
+    // Fetch the featured products and notify listeners
+    notifyListeners();
+  }
+
+  void fetchPopularProducts() {
+    // Fetch the most popular products and notify listeners
+    notifyListeners();
+  }
+}
+
+final dashboardViewModelProvider = ChangeNotifierProvider((_) => DashboardViewModel());
