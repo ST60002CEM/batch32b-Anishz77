@@ -55,3 +55,15 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
     );
   }
 }
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trailtrekker_app/features/dashboard/presentation/viewmodel/paginated_products_view_model.dart';
+
+
+class DashboardView extends ConsumerStatefulWidget {
+  @override
+  _DashboardViewState createState() => _DashboardViewState();
+}
+
+class _DashboardViewState extends ConsumerState<DashboardView> {
+  final ScrollController _scrollController = ScrollController();
