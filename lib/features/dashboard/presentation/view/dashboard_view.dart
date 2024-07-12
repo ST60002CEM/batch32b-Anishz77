@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trailtrekker_app/features/censor/presentation/accelerometer.dart';
 import 'package:trailtrekker_app/features/dashboard/presentation/viewmodel/paginated_products_view_model.dart';
-
 
 class DashboardView extends ConsumerStatefulWidget {
   @override
@@ -43,7 +43,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
           controller: _scrollController,
           child: Column(
             children: [
-              _buildHeader(),
+              _buildHeader(context),
               _buildSearchBar(),
               _buildPromoBanner(),
               _buildSectionTitle(context, 'Featured'),
@@ -56,7 +56,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
@@ -67,7 +67,22 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
             radius: 20,
           ),
           Text('Hello', style: TextStyle(fontSize: 20)),
-          Icon(Icons.notifications, size: 28),
+          Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.device_hub, size: 28),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AccelerometerScreen(),
+                    ),
+                  );
+                },
+              ),
+              Icon(Icons.notifications, size: 28),
+            ],
+          ),
         ],
       ),
     );
