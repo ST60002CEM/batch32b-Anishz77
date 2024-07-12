@@ -4,6 +4,7 @@ import 'package:trailtrekker_app/features/auth/presentation/view/register_view.d
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trailtrekker_app/features/censor/presentation/accelerometer.dart';
 import 'package:trailtrekker_app/features/dashboard/presentation/view/dashboard_view.dart';
 import 'package:trailtrekker_app/features/splash/presentation/view/splash_view.dart';
 
@@ -19,7 +20,8 @@ class App extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'Application',
       theme: AppTheme.getApplicationTheme(false),
-      home: DashboardView(),
+      // home: DashboardView(),
+      home: AccelerometerScreen(),
     );
   }
 }
