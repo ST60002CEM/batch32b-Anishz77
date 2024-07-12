@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:trailtrekker_app/features/auth/presentation/viewmodel/auth_view_model.dart';
 import 'package:trailtrekker_app/features/splash/presentation/viewmodel/splash_view_model.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {

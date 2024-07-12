@@ -6,13 +6,13 @@ class DashboardViewModel extends ChangeNotifier {
   List<Map<String, String>> featuredProducts = [
     {'name': 'SideBag', 'price': '\Rs 2400', 'image': 'assets/image/sidebag.webp'},
     {'name': 'PeakPack', 'price': '\Rs 3000', 'image': 'assets/image/peakpack.webp'},
-    {'name': 'Hikie', 'price': '\Rs1800', 'image': 'assets/image/Hikie.webp'},
+    {'name': 'Hikie', 'price': '\Rs1800', 'image': 'assets/image/wiry.webp'},
   ];
 
   List<Map<String, String>> popularProducts = [
     {'name': 'CasualBag', 'price': '\$2400', 'image': 'assets/image/sidebag.webp'},
     {'name': 'Wiry', 'price': '\Rs2700', 'image': 'assets/image/wiry.webp'},
-    {'name': 'Rodless', 'price': '\Rs1900', 'image': 'assets/image/rodless.webp'},
+    {'name': 'Rodless', 'price': '\Rs1900', 'image': 'assets/image/casualbag.webp'},
   ];
 
   void fetchFeaturedProducts() {
